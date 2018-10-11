@@ -1,0 +1,121 @@
+.weatherWrap {
+    position: relative;
+    width: 100%;
+    height: 760rpx;
+	overflow: hidden;
+}
+
+.weatherWrap .bg {
+	position: absolute;
+	left: 0;
+	top:0;
+	z-index: -1;
+    width: 100%;
+    height: 760rpx;
+}
+
+.weatherWrap .getAddressButton {
+
+	position: relative;
+    width: 100%;
+    background: none;
+    margin-bottom: 60rpx;
+    font-size: 30rpx;
+    line-height: 42rpx;
+    color:#666 !important;
+    border: none !important;
+}
+.weatherWrap .address {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	padding-top:10rpx;
+	padding-bottom:10rpx;
+}
+
+.weatherWrap .address image {
+    width: 21rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
+.weatherWrap .locationTipsText{
+	display: block;
+	line-height: 40rpx;
+	height: 40rpx;
+}
+
+
+
+
+.weatherWrap .weatherDetails {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.weatherWrap .weatherDetails .val{
+	font-size: 200rpx;
+	font-weight: 500;
+	opacity: 0.8;
+}
+.weatherWrap .weatherDetails .describe{
+	font-size: 40rpx;
+	color: #666;
+}
+.weatherWrap .dayWeather{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 1px solid #fff;
+	font-size: 24rpx;
+	color: #666;
+	margin-top:200rpx;
+	height: 56rpx;
+	padding-left: 30rpx;
+	padding-right: 30rpx;
+}
+
+.weatherWrap .dayWeather .r{
+	display: flex;
+	align-items: center;
+}
+.weatherWrap .dayWeather .go{
+	width: 13rpx;
+	height: 24rpx;
+	margin-left: 10rpx;
+}
+
+
+.titleWrap{
+	height: 50rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.titleWrap image{
+	width: 36rpx;
+	height: 28rpx;
+	margin-right: 20rpx;
+}
+.titleWrap text{
+	font-size: 28rpx;
+}
+
+.weatherList{
+	display: flex;
+	height: 100%;
+}
+.weatherList .weatherDay{
+	flex-shrink: 0;
+	width: 140rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.weatherList .weatherDay .icon{
+	width: 90rpx;
+	height: 90rpx;
+}

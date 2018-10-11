@@ -1,0 +1,12 @@
+<block wx:for="{{list}}" wx:key="item.id">
+    <view class="weatherList">
+        <view class="time">
+            <text>{{item.week}}</text>
+            <text>{{item.day}}</text>
+        </view>
+        <view class="number">{{item.minTemp}}℃-{{item.maxTemp}}℃</view>
+        <view class="icon">
+            <image src="{{item.src}}"></image>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,34 @@
+.weatherList{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 200rpx;
+	border-top: 1px solid #ddd;
+	padding:0 30rpx;
+}
+.weatherList:nth-last-of-type(1){
+	border-bottom: 1px solid #ddd;
+}
+
+.weatherList .time{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	width: 200rpx;
+	flex-shrink: 0;
+	
+}
+.weatherList .number{
+	text-align: center;
+	flex: 1;
+}
+.weatherList .icon {
+	width: 90rpx;
+	height: 90rpx;
+	flex-shrink: 0;
+}
+.weatherList .icon image{
+	width: 90rpx;
+	height: 90rpx;
+}

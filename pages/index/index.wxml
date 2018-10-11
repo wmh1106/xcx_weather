@@ -1,0 +1,38 @@
+<view class="weatherWrap">
+    <image class="bg" src="{{nowWeatherBackground}}"></image>
+
+    <button class="getAddressButton" open-type="{{ locationAuthType === 1 ? 'openSetting':'' }}" bindopensetting="" bindtap="onTapLocation" plain="true">
+        <view class="address">
+            <image src="/image/location-icon.png"></image>
+            <text>{{city}}</text>
+        </view>
+        <text class='locationTipsText'>{{locationTipsText}}</text>
+    </button>
+    <view class="weatherDetails">
+        <text class="val">{{now.temp}}°</text>
+        <text class="describe">{{now.text}}</text>
+    </view>
+
+    <view class="dayWeather" bindtap="goToList" data-city="{{city}}">
+        <view class="l">{{day}} 今天</view>
+        <view class='r'>
+            <text>{{today.minTemp}}℃ - {{today.maxTemp}}℃</text>
+            <image class="go"  src="/image/arrow.png"></image>
+        </view>
+    </view>
+</view>
+
+<view class="titleWrap">
+    <image src="/image/time-icon.png"></image>
+    <text>未来24小时天气预测</text>
+</view>
+
+<scroll-view scroll-x="{{true}}" style="height: 400rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}">
+    <view class="weatherList">
+        <view class="weatherDay" wx:for="{{weatherList}}" wx:key="{{item.id}}">
+            <text class="time">{{item.time}}</text>
+            <image class="icon" src="{{item.src}}"></image>
+            <text class="number">{{item.temp}}℃</text>
+        </view>
+    </view>
+</scroll-view>
