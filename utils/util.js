@@ -1,27 +1,21 @@
 const host = 'https://test-miniprogram.com'
+const qqMapKeySDK = 'UUABZ-NM53I-TLEG7-5TAKN-TJNKV-IZFP5'
 
-const weatherMap = {
-	'sunny': '晴天',
-	'cloudy': '多云',
-	'overcast': '阴',
-	'lightrain': '小雨',
-	'heavyrain': '大雨',
-	'snow': '雪'
+function getNowDay() {
+	const date = new Date()
+	const y = date.getFullYear()
+	const m = date.getMonth() + 1
+	const d = date.getDate()
+	return `${zero(y)}-${zero(m)}-${zero(d)}`
 }
 
-const weatherColorMap = {
-	'sunny': '#cbeefd',
-	'cloudy': '#deeef6',
-	'overcast': '#c6ced2',
-	'lightrain': '#bdd5e1',
-	'heavyrain': '#c5ccd0',
-	'snow': '#aae1fc'
+function zero(n){
+	return n>10 ? ''+n : '0'+n
 }
-
-//   // /api/weather/future?city=& time=
 
 export {
 	host,
-	weatherMap,
-	weatherColorMap
+	getNowDay,
+	zero,
+	qqMapKeySDK
 } 

@@ -1,7 +1,7 @@
 <view class="weatherWrap">
     <image class="bg" src="{{nowWeatherBackground}}"></image>
 
-    <button class="getAddressButton" open-type="{{ locationAuthType === 1 ? 'openSetting':'' }}" bindopensetting="" bindtap="onTapLocation" plain="true">
+    <button class="getAddressButton" open-type="{{ locationAuthType === 1 ? 'openSetting':'' }}" bindopensetting="" bindtap="bindTapLocation" plain="true">
         <view class="address">
             <image src="/image/location-icon.png"></image>
             <text>{{city}}</text>

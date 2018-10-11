@@ -1,10 +1,28 @@
 import {
     host,
-    weatherMap,
-    weatherColorMap
+    getNowDay,
+    qqMapKeySDK
 } from '../../utils/util.js'
 
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
+
+const weatherMap = {
+    'sunny': '晴天',
+    'cloudy': '多云',
+    'overcast': '阴',
+    'lightrain': '小雨',
+    'heavyrain': '大雨',
+    'snow': '雪'
+}
+
+const weatherColorMap = {
+    'sunny': '#cbeefd',
+    'cloudy': '#deeef6',
+    'overcast': '#c6ced2',
+    'lightrain': '#bdd5e1',
+    'heavyrain': '#c5ccd0',
+    'snow': '#aae1fc'
+}
 
 const unprompted = 0
 const unAuthorized = 1
@@ -16,8 +34,8 @@ const authorized_tips = ''
 
 // wx.openSetting({success:()=>{}})
 
-let qqmapsdk = new QQMapWX({
-    key: 'UUABZ-NM53I-TLEG7-5TAKN-TJNKV-IZFP5'
+const qqmapsdk = new QQMapWX({
+    key: qqMapKeySDK
 })
 
 Page({
@@ -27,33 +45,32 @@ Page({
         today: null,
         day: '',
         nowWeatherBackground: '',
-
-		city: '',
+        // 城市相关
+        city: '',
         locationTipsText: unprompted_tips,
         locationAuthType: unprompted
     },
+
     onLoad() {
-        const _this = this
+
         this.setData({
-            day: this.getNowDay()
+            day: getNowDay()
         })
 
         this.getLocation()
 
-		// this.getWeather()
-		
+        // this.getWeather()
     },
 
     onShow() {
         wx.getSetting({
             success: res => {
-				console.log(res)
                 let auth = res.authSetting['scope.userLocation']
-				if (auth && this.data.locationAuthType !== authorized) {
+                if (auth && this.data.locationAuthType !== authorized) {
                     //权限从无到有
                     this.setData({
-						locationAuthType: authorized,
-						locationTipsText: authorized_tips
+                        locationAuthType: authorized,
+                        locationTipsText: authorized_tips
                     })
                     this.getLocation()
                 }
@@ -61,9 +78,18 @@ Page({
             }
         })
     },
+
+	onPullDownRefresh() {
+		this.getWeather(() => {
+			wx.stopPullDownRefresh()
+		})
+	},
+
+	bindTapLocation() {
+		this.getLocation()
+	},
+
     getWeather(callBack) {
-        const _this = this
-		console.log(this.city)
         wx.request({
             url: host + '/api/weather/now',
             data: {
@@ -72,11 +98,12 @@ Page({
             header: {
                 'content-type': 'application/json'
             },
-            success(res) {
+            success: (res) => {
                 if (res.data.code === 200) {
                     const result = res.data.result
-                    _this.setData({
-                        weatherList: _this.get24H(result.forecast),
+
+                    this.setData({
+                        weatherList: this.get24H(result.forecast),
                         now: {
                             ...result.now,
                             text: weatherMap[result.now.weather]
@@ -95,44 +122,38 @@ Page({
             }
         })
     },
-    getNowDay() {
-        const date = new Date()
-        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
-    },
 
-    onTapLocation() {
-        this.getLocation()
-    },
     getLocation() {
-        const _this = this
+		
         wx.getLocation({
-            type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-            success(res) {
+            type: 'gcj02',
+            success: (res) => {
 
-                _this.setData({
+                this.setData({
                     locationTipsText: authorized_tips,
                     locationAuthType: authorized
                 })
 
-
                 const latitude = res.latitude
                 const longitude = res.longitude
+
                 qqmapsdk.reverseGeocoder({
                     location: {
                         latitude: latitude,
                         longitude: longitude
                     },
                     success: res => {
-                        _this.setData({
+                        this.setData({
                             city: res.result.address_component.city
-                        },function(){
-							_this.getWeather()
-						})
+                        }, () => {
+							console.log(this.city)
+                            this.getWeather()
+                        })
                     }
                 });
             },
-            fail(res) {
-                _this.setData({
+            fail: (res) => {
+                this.setData({
                     locationTipsText: unAuthorized_tips,
                     locationAuthType: unAuthorized
                 })
@@ -143,7 +164,9 @@ Page({
     },
 
     get24H(arr) {
+
         const now = new Date().getHours()
+
         return arr.map((item, index) => {
             item.src = '/image/' + item.weather + '-icon.png'
             if (index === 0) {
@@ -155,6 +178,7 @@ Page({
             }
         })
     },
+
     goToList(event) {
         const city = event.currentTarget.dataset.city
         wx.navigateTo({
@@ -162,10 +186,5 @@ Page({
         })
     },
 
-    onPullDownRefresh() {
-        this.getWeather(() => {
-            wx.stopPullDownRefresh()
-        })
-        console.log("refresh executed!")
-    }
+    
 })
