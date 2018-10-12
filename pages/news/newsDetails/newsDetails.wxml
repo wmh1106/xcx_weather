@@ -1,1 +1,13 @@
-<web-view src="http:\/\/mini.eastday.com\/mobile\/181012132738673.html"></web-view>
+<view class="detailsWrap">
+	<view class="title">{{title}}</view>
+	<view class="hint">
+		<text>{{date}}</text>
+		<text>来源：{{source}}</text>
+	</view>
+	<image class="cover" src="{{firstImage}}"></image>
+
+	<view class="content" wx:for="{{content}}" wx:key="{{index}}">
+		<view>{{item.text}}</view>
+	</view>
+</view>
+

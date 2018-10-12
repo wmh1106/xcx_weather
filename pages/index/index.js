@@ -144,7 +144,6 @@ Page({
                         this.setData({
                             city: res.result.address_component.city
                         }, () => {
-							console.log(this.data.city)
                             this.getWeather()
                         })
                     }

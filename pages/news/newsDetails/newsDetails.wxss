@@ -1,1 +1,27 @@
-/* pages/news/newsDetails/newsDetails.wxss */
+.detailsWrap{
+	width: 100%;
+	padding: 0 30rpx;
+}
+.detailsWrap .title{
+	font-size: 30rpx;
+	padding: 10rpx 0 20rpx;
+}
+
+.detailsWrap .hint{
+	display: flex;
+	justify-content: space-between;
+	font-size: 24rpx;
+	color: #999;
+}
+
+.detailsWrap .cover{
+	width: 100%;
+	margin-top: 20rpx;
+}
+
+.detailsWrap .content{
+	font-size: 28rpx;
+}
+.detailsWrap .content>view{
+	padding-bottom: 20rpx;
+}

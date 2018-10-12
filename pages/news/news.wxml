@@ -1,12 +1,20 @@
-<block wx:for="{{articles}}" wx:key="item.uniquekey">
-    <view class="newsList" bindtap="goToDetails" data-url="{{item.url}}">
+<view class="navBar">
+    <block wx:for="{{typeText}}" wx:key="index">
+        <view bindtap="bindCutClass" class="item {{activeIndex === index ? 'active': ''}} "  data-type="{{item.type}}" data-index="{{index}}" >
+            {{item.text}}
+        </view>
+    </block>
+</view>
+
+<block wx:for="{{articles}}" wx:key="item.id">
+    <view class="newsList" bindtap="goToDetails" data-url="{{item.url}}" data-id="{{item.id}}">
         <view class="newsImg">
-            <image mode="aspectFill" src="{{item.thumbnail_pic_s ? item.thumbnail_pic_s : defaultImg}}"></image>
+            <image mode="aspectFill" src="{{item.firstImage ? item.firstImage : defaultImg}}"></image>
         </view>
         <view class="title">{{item.title}}</view>
-		<view class="otherHint">
-			<view class="author">来源：{{item.author_name}}</view>
-			<view class='date'>{{item.date}}</view>
-		</view>
+        <view class="otherHint">
+            <view class="author">来源：{{item.source ? item.source : '未知'}}</view>
+            <view class='date'>{{item.date}}</view>
+        </view>
     </view>
 </block>

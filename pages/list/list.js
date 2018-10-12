@@ -11,7 +11,6 @@ Page({
 		this.setData({
 			city: event.city
 		})
-		console.log(event.city)
 		this.getWeather()
 	},
 	getWeather(callBack) {

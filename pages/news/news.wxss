@@ -1,3 +1,18 @@
+.navBar{
+	display: flex;
+	justify-content: space-around;
+	border-bottom:1px solid #ddd;
+}
+.navBar .item{
+	flex: 1;
+	line-height: 60rpx;
+	text-align: center;
+	/* border: 1px solid red; */
+}
+.navBar .item.active{
+	border-bottom:4px solid red;
+}
+
 .newsList {
 	margin:30rpx;
 	box-shadow: 0 0 4px rgba(0,0,0,0.3);

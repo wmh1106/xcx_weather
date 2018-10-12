@@ -10,8 +10,18 @@ function getNowDay() {
 	return `${zero(y)}-${zero(m)}-${zero(d)}`
 }
 
+function changeTime(time) {
+	const date = new Date(time)
+	const y = date.getFullYear()
+	const m = date.getMonth() + 1
+	const d = date.getDate()
+	const h = date.getHours()
+	const mm = date.getMinutes()
+	return `${zero(y)}-${zero(m)}-${zero(d)} ${zero(h)}:${zero(mm)}`
+}
+
 function zero(n){
-	return n>10 ? ''+n : '0'+n
+	return n>=10 ? ''+n : '0'+n
 }
 
 export default {
@@ -19,5 +29,6 @@ export default {
 	getNowDay,
 	zero,
 	qqMapKeySDK,
-	newKeySDK
+	newKeySDK,
+	changeTime
 } 
