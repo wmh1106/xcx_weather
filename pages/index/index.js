@@ -1,8 +1,6 @@
-import {
-    host,
-    getNowDay,
-    qqMapKeySDK
-} from '../../utils/util.js'
+
+
+import utils from '../../utils/util.js'
 
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.js')
 
@@ -35,7 +33,7 @@ const authorized_tips = ''
 // wx.openSetting({success:()=>{}})
 
 const qqmapsdk = new QQMapWX({
-    key: qqMapKeySDK
+	key: utils.qqMapKeySDK
 })
 
 Page({
@@ -54,7 +52,7 @@ Page({
     onLoad() {
 
         this.setData({
-            day: getNowDay()
+			day: utils.getNowDay()
         })
 
         this.getLocation()
@@ -91,9 +89,9 @@ Page({
 
     getWeather(callBack) {
         wx.request({
-            url: host + '/api/weather/now',
+            url: utils.host + '/api/weather/now',
             data: {
-                city: this.city
+                city: this.data.city
             },
             header: {
                 'content-type': 'application/json'
@@ -146,7 +144,7 @@ Page({
                         this.setData({
                             city: res.result.address_component.city
                         }, () => {
-							console.log(this.city)
+							console.log(this.data.city)
                             this.getWeather()
                         })
                     }

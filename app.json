@@ -1,8 +1,9 @@
 {
     "pages": [
+		"pages/news/news",
+		"pages/news/newsDetails/newsDetails",
         "pages/index/index",
-		"pages/list/list",
-        "pages/logs/logs"
+		"pages/list/list"
     ],
     "window": {
         "backgroundTextStyle": "back",

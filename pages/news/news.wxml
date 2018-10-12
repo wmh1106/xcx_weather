@@ -1,0 +1,12 @@
+<block wx:for="{{articles}}" wx:key="item.uniquekey">
+    <view class="newsList" bindtap="goToDetails" data-url="{{item.url}}">
+        <view class="newsImg">
+            <image mode="aspectFill" src="{{item.thumbnail_pic_s ? item.thumbnail_pic_s : defaultImg}}"></image>
+        </view>
+        <view class="title">{{item.title}}</view>
+		<view class="otherHint">
+			<view class="author">来源：{{item.author_name}}</view>
+			<view class='date'>{{item.date}}</view>
+		</view>
+    </view>
+</block>

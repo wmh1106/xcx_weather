@@ -1,5 +1,6 @@
 const host = 'https://test-miniprogram.com'
 const qqMapKeySDK = 'UUABZ-NM53I-TLEG7-5TAKN-TJNKV-IZFP5'
+const newKeySDK = '3f4b8f0813e64c3615772691f0d069bb'
 
 function getNowDay() {
 	const date = new Date()
@@ -13,9 +14,10 @@ function zero(n){
 	return n>10 ? ''+n : '0'+n
 }
 
-export {
+export default {
 	host,
 	getNowDay,
 	zero,
-	qqMapKeySDK
+	qqMapKeySDK,
+	newKeySDK
 } 

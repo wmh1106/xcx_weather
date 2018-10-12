@@ -1,7 +1,4 @@
-import {
-	host, getNowDay
-	
-} from '../../utils/util.js'
+import utils from '../../utils/util.js'
 
 const dayMap = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 
@@ -20,7 +17,7 @@ Page({
 	getWeather(callBack) {
 		
 		wx.request({
-			url: host + '/api/weather/future',
+			url: utils.host + '/api/weather/future',
 			data: {
 				time: new Date().getTime(),
 				city: this.city
@@ -36,7 +33,7 @@ Page({
 						return {
 							...item,
 							week: dayMap[index],
-							time: getNowDay(),
+							time: utils.getNowDay(),
 							src: '/image/' + item.weather + '-icon.png'
 						}
 					})
